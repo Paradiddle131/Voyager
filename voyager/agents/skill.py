@@ -4,7 +4,7 @@ import voyager.utils as U
 from langchain_community.chat_models import ChatOllama
 from langchain_community.embeddings import OllamaEmbeddings
 from langchain.schema import HumanMessage, SystemMessage
-from langchain.vectorstores import Chroma
+from langchain_chroma import Chroma
 
 from voyager.prompts import load_prompt
 from voyager.control_primitives import load_control_primitives

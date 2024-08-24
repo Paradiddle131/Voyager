@@ -9,7 +9,7 @@ from voyager.utils.json_utils import fix_and_parse_json
 from langchain_community.chat_models import ChatOllama
 from langchain_community.embeddings import OllamaEmbeddings
 from langchain.schema import HumanMessage, SystemMessage
-from langchain.vectorstores import Chroma
+from langchain_chroma import Chroma
 
 
 class CurriculumAgent:
