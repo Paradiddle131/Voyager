@@ -1,3 +1,4 @@
+from config.config import MODEL_NAME
 from voyager.prompts import load_prompt
 from voyager.utils.json_utils import fix_and_parse_json
 from langchain_community.chat_models import ChatOllama
@@ -7,13 +8,13 @@ from langchain.schema import HumanMessage, SystemMessage
 class CriticAgent:
     def __init__(
         self,
-        model_name="llama3.1:8b",
+        model_name=MODEL_NAME,
         temperature=0,
         request_timout=120,
         mode="auto",
     ):
         self.llm = ChatOllama(
-            model_name=model_name,
+            model=model_name,
             temperature=temperature,
             request_timeout=request_timout,
         )

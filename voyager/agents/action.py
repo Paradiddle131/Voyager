@@ -1,6 +1,7 @@
 import re
 import time
 
+from config.config import MODEL_NAME
 import voyager.utils as U
 from javascript import require
 from langchain_community.chat_models import ChatOllama
@@ -14,7 +15,7 @@ from voyager.control_primitives_context import load_control_primitives_context
 class ActionAgent:
     def __init__(
         self,
-        model_name="llama3.1:8b",
+        model_name=MODEL_NAME,
         temperature=0,
         request_timout=120,
         ckpt_dir="ckpt",
@@ -32,7 +33,7 @@ class ActionAgent:
         else:
             self.chest_memory = {}
         self.llm = ChatOllama(
-            model_name=model_name,
+            model=model_name,
             temperature=temperature,
             request_timeout=request_timout,
         )
@@ -83,7 +84,7 @@ class ActionAgent:
             "smeltItem",
             "killMob",
         ]
-        if not self.llm.model_name == "llama3.1:8b":
+        if not self.llm.model == MODEL_NAME:
             base_skills += [
                 "useChest",
                 "mineflayer",
@@ -212,7 +213,11 @@ class ActionAgent:
                 code = "\n".join(code_pattern.findall(message.content))
                 parsed = babel.parse(code)
                 functions = []
-                assert len(list(parsed.program.body)) > 0, "No functions found"
+                # assert len(list(parsed.program.body)) > 0, "No functions found"
+                if not len(list(parsed.program.body)) > 0:
+                    retry -= 1
+                    time.sleep(1)
+                    continue
                 for i, node in enumerate(parsed.program.body):
                     if node.type != "FunctionDeclaration":
                         continue

@@ -3,6 +3,7 @@ from __future__ import annotations
 import random
 import re
 
+from config.config import MODEL_NAME
 import voyager.utils as U
 from voyager.prompts import load_prompt
 from voyager.utils.json_utils import fix_and_parse_json
@@ -15,9 +16,9 @@ from langchain_chroma import Chroma
 class CurriculumAgent:
     def __init__(
         self,
-        model_name="llama3.1:8b",
+        model_name=MODEL_NAME,
         temperature=0,
-        qa_model_name="llama3.1:8b",
+        qa_model_name=MODEL_NAME,
         qa_temperature=0,
         request_timout=120,
         ckpt_dir="ckpt",
@@ -27,7 +28,7 @@ class CurriculumAgent:
         core_inventory_items: str | None = None,
     ):
         self.llm = ChatOllama(
-            model_name=model_name,
+            model=model_name,
             temperature=temperature,
             request_timeout=request_timout,
         )

@@ -1,5 +1,6 @@
 import os
 
+from config.config import MODEL_NAME
 import voyager.utils as U
 from langchain_community.chat_models import ChatOllama
 from langchain_community.embeddings import OllamaEmbeddings
@@ -13,7 +14,7 @@ from voyager.control_primitives import load_control_primitives
 class SkillManager:
     def __init__(
         self,
-        model_name="llama3.1:8b",
+        model_name=MODEL_NAME,
         temperature=0,
         retrieval_top_k=5,
         request_timout=120,
@@ -21,7 +22,7 @@ class SkillManager:
         resume=False,
     ):
         self.llm = ChatOllama(
-            model_name=model_name,
+            model=model_name,
             temperature=temperature,
             request_timeout=request_timout,
         )

@@ -2,6 +2,7 @@ tqdm
 langchain
 javascript
 setuptools
+openai
 chardet
 cchardet
 chromadb==0.3.29
@@ -11,5 +12,3 @@ setuptools
 gymnasium
 psutil
 minecraft_launcher_lib
-langchain-community
-javascript

@@ -4,6 +4,7 @@ import os
 import time
 from typing import Dict
 
+from config.config import MODEL_NAME
 import voyager.utils as U
 from .env import VoyagerEnv
 
@@ -21,27 +22,27 @@ class Voyager:
         azure_login: Dict[str, str] = None,
         server_port: int = 3000,
         openai_api_key: str = None,
-        env_wait_ticks: int = 20,
+        env_wait_ticks: int = 40,
         env_request_timeout: int = 600,
         max_iterations: int = 160,
         reset_placed_if_failed: bool = False,
-        action_agent_model_name: str = "llama3.1:8b",
+        action_agent_model_name: str = MODEL_NAME,
         action_agent_temperature: float = 0,
         action_agent_task_max_retries: int = 4,
         action_agent_show_chat_log: bool = True,
         action_agent_show_execution_error: bool = True,
-        curriculum_agent_model_name: str = "llama3.1:8b",
+        curriculum_agent_model_name: str = MODEL_NAME,
         curriculum_agent_temperature: float = 0,
-        curriculum_agent_qa_model_name: str = "llama3.1:8b",
+        curriculum_agent_qa_model_name: str = MODEL_NAME,
         curriculum_agent_qa_temperature: float = 0,
         curriculum_agent_warm_up: Dict[str, int] = None,
         curriculum_agent_core_inventory_items: str = r".*_log|.*_planks|stick|crafting_table|furnace"
         r"|cobblestone|dirt|coal|.*_pickaxe|.*_sword|.*_axe",
         curriculum_agent_mode: str = "auto",
-        critic_agent_model_name: str = "llama3.1:8b",
+        critic_agent_model_name: str = MODEL_NAME,
         critic_agent_temperature: float = 0,
         critic_agent_mode: str = "auto",
-        skill_manager_model_name: str = "llama3.1:8b",
+        skill_manager_model_name: str = MODEL_NAME,
         skill_manager_temperature: float = 0,
         skill_manager_retrieval_top_k: int = 5,
         openai_api_request_timeout: int = 240,
